@@ -17,8 +17,8 @@ public class Book {
     private String isbn;
     private String title;
 
-@OneToMany(cascade = CascadeType.ALL)
-@JoinColumn(name = "author_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id")
     public Author author;
 
 }
