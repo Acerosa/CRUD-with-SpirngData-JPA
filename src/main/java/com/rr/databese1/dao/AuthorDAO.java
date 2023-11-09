@@ -12,4 +12,6 @@ void create(Author author);
     List<Author> find();
 
     void update(long id, Author author);
+
+    void delete(Long id);
 }

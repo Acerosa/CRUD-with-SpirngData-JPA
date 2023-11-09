@@ -62,5 +62,16 @@ public class AuthorDaoImplTest {
                 2L, "Yuval Noah Harari", 47, 2L
         );
     }
+
+    @Test
+    public void testThatDeleteGeneratesCorrectSQL(){
+        Author author = TestDataUtil.createTestAuthorA();
+        underTest.delete(author.getId());
+
+        verify(jdbcTemplate).update(
+            "DELETE FROM authors WHERE id = ?",
+                2L
+        );
+    }
 }
 
