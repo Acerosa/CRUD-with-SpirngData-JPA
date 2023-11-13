@@ -24,8 +24,8 @@ public class Databese1Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		log.info("Datasource" + dataSource.toString());
-		final JdbcTemplate restTemplate = new JdbcTemplate(dataSource);
-		restTemplate.execute("select 1");
+//		log.info("Datasource" + dataSource.toString());
+//		final JdbcTemplate restTemplate = new JdbcTemplate(dataSource);
+//		restTemplate.execute("select 1");
 	}
 }

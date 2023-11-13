@@ -48,27 +48,27 @@ public final class TestDataUtil {
 //                .build();
 //    }
 
-    public static Book createTestBookA() {
+    public static Book createTestBookA(final Author author) {
         return Book.builder().
                 isbn("978-1-2345-6789-4")
                 .title("Sapiens")
-                .authorId(2L)
+                .author(author)
                 .build();
     }
 
-    public static Book createTestBookB() {
+    public static Book createTestBookB(Author author) {
         return Book.builder().
                 isbn("978-1-2345-6789-7")
                 .title("Who Rules the World?")
-                .authorId(3L)
+                .author(author)
                 .build();
     }
 
-    public static Book createTestBookC() {
+    public static Book createTestBookC(Author author) {
         return Book.builder().
                 isbn("978-1-2345-6789-2")
                 .title("Zahir")
-                .authorId(4L)
+                .author(author)
                 .build();
     }
 }
