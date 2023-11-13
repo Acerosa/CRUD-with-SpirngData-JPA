@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,7 +24,7 @@ public class AuthorRepositoryIntegrationTests {
     }
 
     @Test
-    public void testThatAuthorCanBeCreateAndRecalled(){
+    public void testThatAuthorCanBesaveAndRecalled(){
         Author author = TestDataUtil.createTestAuthorA();
         underTest.save(author);
         Optional<Author> result = underTest.findById(author.getId());
@@ -35,25 +33,25 @@ public class AuthorRepositoryIntegrationTests {
     }
 
 
-//    @Test
-//    public void testThatMultipleAuthorsCanBeCreateAndRecalled(){
-//        Author authorA = TestDataUtil.createTestAuthorA();
-//        underTest.create(authorA);
-//        Author authorB = TestDataUtil.createTestAuthorB();
-//        underTest.create(authorB);
-//        Author authorC = TestDataUtil.createTestAuthorC();
-//        underTest.create(authorC);
-//        List<Author> result = underTest.find();
-//
-//        assertThat(result)
-//                .hasSize(3)
-//                .containsExactly(authorA, authorB, authorC);
-//    }
+    @Test
+    public void testThatMultipleAuthorsCanBesaveAndRecalled(){
+        Author authorA = TestDataUtil.createTestAuthorA();
+        underTest.save(authorA);
+        Author authorB = TestDataUtil.createTestAuthorB();
+        underTest.save(authorB);
+        Author authorC = TestDataUtil.createTestAuthorC();
+        underTest.save(authorC);
+        Iterable<Author> result = underTest.findAll();
+
+        assertThat(result)
+                .hasSize(3)
+                .containsExactly(authorA, authorB, authorC);
+    }
 
 //    @Test
 //    public void testThatAuthorCanBeUpdated(){
-//        Author authorA = TestDataUtil.createTestAuthorA();
-//        underTest.create(authorA);
+//        Author authorA = TestDataUtil.saveTestAuthorA();
+//        underTest.save(authorA);
 //        authorA.setName("UpdatedName");
 //        underTest.update(authorA.getId(), authorA);
 //
@@ -64,8 +62,8 @@ public class AuthorRepositoryIntegrationTests {
 //
 //    @Test
 //    public void testThatAuthorCanBeDeleted(){
-//        Author authorA = TestDataUtil.createTestAuthorA();
-//        underTest.create(authorA);
+//        Author authorA = TestDataUtil.saveTestAuthorA();
+//        underTest.save(authorA);
 //        underTest.delete(authorA.getId());
 //        Optional<Author> result = underTest.findOne(authorA.getId());
 //        assertThat(result).isEmpty();

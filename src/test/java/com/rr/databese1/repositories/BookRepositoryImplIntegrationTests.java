@@ -39,29 +39,29 @@ public class BookRepositoryImplIntegrationTests {
         assertThat(result.get()).isEqualTo(book);
     }
 
-//    @Test
-//    public void testThatMultipleBooksCanBeCreateAndRecalled(){
-//        Author authorA = TestDataUtil.createTestAuthorA();
-//        authorDAO.create(authorA);
-//        Book bookA = TestDataUtil.createTestBookA();
-//        underTest.create(bookA);
-//        bookA.setAuthorId(authorA.getId());
-//        Author authorB = TestDataUtil.createTestAuthorB();
-//        authorDAO.create(authorB);
-//        Book bookB = TestDataUtil.createTestBookB();
-//        underTest.create(bookB);
-//        bookB.setAuthorId(authorB.getId());
-//        Author authorC = TestDataUtil.createTestAuthorC();
-//        authorDAO.create(authorC);
-//        Book bookC = TestDataUtil.createTestBookC();
-//        underTest.create(bookC);
-//        bookC.setAuthorId(authorC.getId());
-//        List<Book> result = underTest.find();
-//
-//        assertThat(result)
-//                .hasSize(3)
-//                .containsExactly(bookA, bookB, bookC);
-//    }
+    @Test
+    public void testThatMultipleBooksCanBeCreateAndRecalled(){
+        Author authorA = TestDataUtil.createTestAuthorA();
+
+        Book bookA = TestDataUtil.createTestBookA(authorA);
+        underTest.save(bookA);
+
+        Author authorB = TestDataUtil.createTestAuthorB();
+
+        Book bookB = TestDataUtil.createTestBookB(authorB);
+        underTest.save(bookB);
+
+        Author authorC = TestDataUtil.createTestAuthorC();
+
+        Book bookC = TestDataUtil.createTestBookC(authorC);
+        underTest.save(bookC);
+
+        Iterable<Book> result = underTest.findAll();
+
+        assertThat(result)
+                .hasSize(3)
+                .containsExactly(bookA, bookB, bookC);
+    }
 
 //    @Test
 //    public void testThatBookCanBeUpdated(){
