@@ -2,6 +2,7 @@ package com.rr.databese1.repositories;
 
 import com.rr.databese1.TestDataUtil;
 import com.rr.databese1.domain.Author;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,5 +68,18 @@ public class AuthorRepositoryIntegrationTests {
         underTest.deleteById(authorA.getId());
         Optional<Author> result = underTest.findById(authorA.getId());
         assertThat(result).isEmpty();
+    }
+    @Test
+    public void testThatGetAuthorWithAgeLessThan(){
+        Author authorA = TestDataUtil.createTestAuthorA();
+        underTest.save(authorA);
+        Author authorB = TestDataUtil.createTestAuthorB();
+        underTest.save(authorB);
+        Author authorC = TestDataUtil.createTestAuthorC();
+        underTest.save(authorC);
+
+        Iterable<Author> results =  underTest.ageLessThan(50);
+
+        assertThat(results).containsExactly(authorA);
     }
 }
